@@ -118,7 +118,7 @@ function HeroSection({ theme }) {
         translateY: [50, 0],
         delay: 1000,
         duration: 1000,
-        ease: 'outExpo'
+        ease: 'easeOutExpo'
       });
     }
   }, [inView]);
