@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, Text3D, useTexture } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { anime } from 'animejs';
+import { animate } from 'animejs';
 import './App.css';
 
 // Theme context
