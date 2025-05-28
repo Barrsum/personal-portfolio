@@ -112,7 +112,7 @@ function HeroSection({ theme }) {
   
   useEffect(() => {
     if (inView) {
-      anime({
+      animate({
         targets: '.hero-subtitle',
         opacity: [0, 1],
         translateY: [50, 0],
