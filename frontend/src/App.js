@@ -696,14 +696,33 @@ function App() {
   
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={`font-sans ${theme === 'dark' ? 'bg-black' : theme === 'blue' ? 'bg-slate-900' : 'bg-white'}`}>
+      <div className={`font-sans ${theme === 'dark' ? 'bg-black' : theme === 'blue' ? 'bg-slate-900' : 'bg-white'} relative overflow-x-hidden`}>
+        {/* Epic Background Effects */}
+        <SpaceStars theme={theme} />
+        <ShootingStars theme={theme} />
+        <InteractiveGrid theme={theme} />
+        
         <ThemeToggle theme={theme} setTheme={setTheme} />
         
-        <HeroSection theme={theme} />
-        <AboutSection theme={theme} />
-        <ChallengeSection theme={theme} />
-        <ProjectsSection theme={theme} />
-        <ContactSection theme={theme} />
+        <ParallaxContainer speed={-0.2}>
+          <HeroSection theme={theme} />
+        </ParallaxContainer>
+        
+        <ParallaxContainer speed={0.1}>
+          <AboutSection theme={theme} />
+        </ParallaxContainer>
+        
+        <ParallaxContainer speed={-0.1}>
+          <ChallengeSection theme={theme} />
+        </ParallaxContainer>
+        
+        <ParallaxContainer speed={0.2}>
+          <ProjectsSection theme={theme} />
+        </ParallaxContainer>
+        
+        <ParallaxContainer speed={-0.1}>
+          <ContactSection theme={theme} />
+        </ParallaxContainer>
       </div>
     </ThemeContext.Provider>
   );
