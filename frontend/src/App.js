@@ -160,7 +160,7 @@ function HeroSection({ theme }) {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-center"
         >
-          <div className={`hero-subtitle text-xl md:text-2xl opacity-0 ${
+          <div className={`hero-subtitle text-xl md:text-2xl transition-all duration-1000 ease-out opacity-0 translate-y-12 ${inView ? 'opacity-100 translate-y-0' : ''} ${
             theme === 'light' ? 'text-gray-700' : 'text-gray-300'
           }`}>
             Full Stack Developer • AI Enthusiast • 3rd Year CS Student
