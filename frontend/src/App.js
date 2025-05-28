@@ -47,7 +47,7 @@ function FloatingShapes({ theme }) {
   return <>{shapes}</>;
 }
 
-// 3D Hero Text Component
+// 3D Hero Text Component  
 function Hero3DText({ theme }) {
   const color = theme === 'dark' ? '#ffffff' : 
                 theme === 'blue' ? '#e2e8f0' : '#1f2937';
@@ -65,6 +65,7 @@ function Hero3DText({ theme }) {
           bevelSize={0.02}
           bevelOffset={0}
           bevelSegments={5}
+          position={[-3.5, 0, 0]} // Center the text by offsetting half the width
         >
           RAM BAPAT
           <meshStandardMaterial 
