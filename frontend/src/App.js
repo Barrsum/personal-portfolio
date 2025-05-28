@@ -110,15 +110,14 @@ function HeroSection({ theme }) {
   const [ref, inView] = useInView({ threshold: 0.1 });
   
   useEffect(() => {
+    // Using CSS-based animation instead of anime.js for better compatibility
     if (inView) {
-      animate({
-        targets: '.hero-subtitle',
-        opacity: [0, 1],
-        translateY: [50, 0],
-        delay: 1000,
-        duration: 1000,
-        easing: 'easeOutExpo'
-      });
+      const subtitle = document.querySelector('.hero-subtitle');
+      if (subtitle) {
+        subtitle.style.transition = 'all 1s ease-out';
+        subtitle.style.opacity = '1';
+        subtitle.style.transform = 'translateY(0)';
+      }
     }
   }, [inView]);
   
