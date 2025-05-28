@@ -47,6 +47,129 @@ function FloatingShapes({ theme }) {
   return <>{shapes}</>;
 }
 
+// Space Stars Background Component
+function SpaceStars({ theme }) {
+  const stars = [];
+  for (let i = 0; i < 100; i++) {
+    stars.push(
+      <div
+        key={i}
+        className={`absolute w-1 h-1 ${
+          theme === 'light' ? 'bg-gray-400' : 'bg-white'
+        } rounded-full opacity-70 animate-pulse`}
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 3}s`,
+          animationDuration: `${2 + Math.random() * 3}s`
+        }}
+      />
+    );
+  }
+  return <div className="fixed inset-0 pointer-events-none overflow-hidden">{stars}</div>;
+}
+
+// Shooting Stars Animation Component
+function ShootingStars({ theme }) {
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      {[...Array(3)].map((_, i) => (
+        <div
+          key={i}
+          className={`absolute w-px h-px ${
+            theme === 'light' ? 'bg-blue-500' : 'bg-cyan-400'
+          } rounded-full shooting-star`}
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 50}%`,
+            animationDelay: `${i * 2}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// Interactive Grid Background Component
+function InteractiveGrid({ theme }) {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+  
+  return (
+    <div className="fixed inset-0 pointer-events-none">
+      <svg className="w-full h-full opacity-20">
+        <defs>
+          <pattern 
+            id="grid" 
+            width="50" 
+            height="50" 
+            patternUnits="userSpaceOnUse"
+          >
+            <path 
+              d="M 50 0 L 0 0 0 50" 
+              fill="none" 
+              stroke={theme === 'light' ? '#3b82f6' : '#00ffff'} 
+              strokeWidth="0.5"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        {/* Interactive connections */}
+        <circle
+          cx={mousePos.x}
+          cy={mousePos.y}
+          r="30"
+          fill="none"
+          stroke={theme === 'light' ? '#3b82f6' : '#00ffff'}
+          strokeWidth="2"
+          opacity="0.5"
+          className="animate-pulse"
+        />
+        <circle
+          cx={mousePos.x}
+          cy={mousePos.y}
+          r="60"
+          fill="none"
+          stroke={theme === 'light' ? '#3b82f6' : '#00ffff'}
+          strokeWidth="1"
+          opacity="0.3"
+          className="animate-ping"
+        />
+      </svg>
+    </div>
+  );
+}
+
+// Parallax Container Component
+function ParallaxContainer({ children, speed = 0.5 }) {
+  const [scrollY, setScrollY] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  return (
+    <div 
+      style={{ 
+        transform: `translateY(${scrollY * speed}px)` 
+      }}
+      className="will-change-transform"
+    >
+      {children}
+    </div>
+  );
+}
+
 // 3D Hero Text Component  
 function Hero3DText({ theme }) {
   const color = theme === 'dark' ? '#ffffff' : 
