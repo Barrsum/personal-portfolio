@@ -112,13 +112,13 @@ function HeroSection({ theme }) {
   
   useEffect(() => {
     if (inView) {
-      anime({
+      animate({
         targets: '.hero-subtitle',
         opacity: [0, 1],
         translateY: [50, 0],
         delay: 1000,
         duration: 1000,
-        easing: 'easeOutExpo'
+        ease: 'outExpo'
       });
     }
   }, [inView]);
